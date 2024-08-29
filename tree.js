@@ -44,10 +44,16 @@ class Tree{
       //add value to insert into the node
       let newNode = new Node(value)
       //if the root is empty, return the value added first.
-      if(this.root === null) return newNode;
+      if(newNode === null) return newNode;
       //remove any duplicates - not allowed duplicates
-      if(this.root.value === value)return this.root;
+      if(newNode.value === value)return newNode;
 
+      if(value < newNode.value){
+        newNode.left = insert(newNode.left.value);
+      }else if(value > newNode.value){
+        newNode.right = insert(newNode.right.value);
+      }
+      return newNode;
     }
 
     deleteItem(value){
