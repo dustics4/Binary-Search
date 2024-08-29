@@ -55,7 +55,7 @@ class Tree{
       return node;
     }
 
-    deleteItem(value){
+    deleteItem(value , node = this.root){
 
     }
 }
