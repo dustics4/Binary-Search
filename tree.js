@@ -34,7 +34,7 @@ class Tree{
         //return build (sortedarray);
     }
 //will insert a value in to the tree
-    insert(value){
+    insert(value, node = this.root){
       //check current value with node value
       // if value is less than node value , move to the left subtree
       //else move the value to the right tree.
@@ -42,18 +42,17 @@ class Tree{
       // key == value
 
       //add value to insert into the node
-      let newNode = new Node(value)
       //if the root is empty, return the value added first.
-      if(newNode === null) return newNode;
-      //remove any duplicates - not allowed duplicates
-      if(newNode.value === value)return newNode;
+      if(node === null) return new Node(value);
 
-      if(value < newNode.value){
-        newNode.left = insert(newNode.left.value);
-      }else if(value > newNode.value){
-        newNode.right = insert(newNode.right.value);
+      if(value < node.data){
+        node.left = this.insert(value, node.left);
+      }else if(value > node.data){
+        node.right = this.insert(value, node.right);
       }
-      return newNode;
+      prettyPrint(this.root);
+
+      return node;
     }
 
     deleteItem(value){
@@ -80,6 +79,8 @@ function randomArray(size , max = 100){
 const randomNumbers = randomArray(15);  
 
 const tree = new Tree(randomNumbers);
-console.log(tree);
-prettyPrint(tree.root);
+tree.insert(40);
+tree.insert(50);
+tree.insert(60);
+
 
