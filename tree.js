@@ -38,8 +38,6 @@ class Tree{
       //check current value with node value
       // if value is less than node value , move to the left subtree
       //else move the value to the right tree.
-      // root = this.root
-      // key == value
 
       //add value to insert into the node
       //if the root is empty, return the value added first.
@@ -56,7 +54,16 @@ class Tree{
     }
 
     deleteItem(value , node = this.root){
+      if(node === null) return null;
+    }
 
+    minValue(node){
+      let current = node;
+
+      while(current.left !== null){
+        current = current.left //traverse until the left most child
+      }
+      return current.data //return the smallest value
     }
 }
 
