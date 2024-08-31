@@ -81,13 +81,20 @@ class Tree{
       }
       return current.data //return the smallest value
     }
+//function to find node in the tree
+    find(value , node = this.root){
+
+    }
 //returns the given node’s height. 
     height(node){
       //check if node is null - return -1 for the height
+      if(node === null) return -1;
 
+      const leftHeight = this.height(node.left);
+      const rigthHeight = this.height(node.right);
       //recursively calculate the left subtree height
       // then the right subtree
-
+      return Math.max(leftHeight, rigthHeight) + 1;
       //use math.max to calculate the hight, and add +1 to the height to calculate the node
     }
 
@@ -129,3 +136,5 @@ console.log("\nDeleting node with value 50:");
 tree.deleteItem(50);
 tree.prettyPrint();
 
+console.log("\nHeight of the tree:");
+console.log(tree.height(tree.root));
