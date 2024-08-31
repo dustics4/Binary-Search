@@ -82,6 +82,10 @@ class Tree{
       return current.data //return the smallest value
     }
 
+    height(node){
+      
+    }
+
     prettyPrint(node = this.root, prefix = "", isLeft = true) {
       if(node === null) return;
       if (node.right !== null) {
