@@ -83,7 +83,11 @@ class Tree{
     }
 //function to find node in the tree
     find(value , node = this.root){
+      //if node is null and node value is equal to value return node
 
+      //only if the value is less than the current node value
+      //search in left node recursively
+      //search in  right node  recursively
     }
 //returns the given node’s height. 
     height(node){
