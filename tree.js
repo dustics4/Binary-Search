@@ -21,11 +21,11 @@ class Tree{
         const build = (arr) => {
             if(arr.length === 0) return null;
 
-            let mid = arr.length / 2;
+            let mid = Math.floor(arr.length / 2);
             let node = new Node(arr[mid]);
 
-            node.left = build(array.splice(0, mid));
-            node.right = build(array.splice(mid, +1))
+            node.left = build(array.slice(0, mid));
+            node.right = build(array.slice(mid +1))
 
             return node
         }
@@ -48,15 +48,31 @@ class Tree{
       }else if(value > node.data){
         node.right = this.insert(value, node.right);
       }
-      prettyPrint(this.root);
-
       return node;
     }
 
     deleteItem(value , node = this.root){
       if(node === null) return null;
-    }
+      //A check makde to see if the value is less than the current nodes value, to search the left tree.
+      if(value < node.data){
+        node.left = this.deleteItem(value , node.left);
+      }else if ( value > node.data){
+        node.right = this.deleteItem(value , node.right);
+      }else{
+      //if the node to delete is found
+          if(node.left === null) return node.right;
+          if(node.right === null) return node.left;
+      
+      //we find the smallest value in the right subtree
+          node.data = this.minValue(node.right);
 
+      //we delete the smallest value as it has been copied
+          node.right = this.deleteItem(node.data, node.right);
+      }
+      //return the node to maintain the tree's links
+      return node;
+    }
+//successor finction, find's the smallest value in tree
     minValue(node){
       let current = node;
 
@@ -65,29 +81,43 @@ class Tree{
       }
       return current.data //return the smallest value
     }
+
+    prettyPrint(node = this.root, prefix = "", isLeft = true) {
+      if(node === null) return;
+      if (node.right !== null) {
+        this.prettyPrint(node.left, `${prefix}${isLeft ? '|   ' : '    '}`, false)
+      }
+      console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+      if (node.left !== null) {
+        this.prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '|   '}`, true)
+      }
+    }
 }
 
-const prettyPrint = (node, prefix = "", isLeft = true) => {
-    if (node === null) {
-      return;
-    }
-    if (node.right !== null) {
-      prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
-    }
-    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
-    if (node.left !== null) {
-      prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
-    }
-  };
 
 function randomArray(size , max = 100){
     return Array.from({length: size}, () => Math.floor(Math.random() * max));
 }
-const randomNumbers = randomArray(15);  
+const randomNumbers = randomArray(20);  
 
 const tree = new Tree(randomNumbers);
-tree.insert(40);
-tree.insert(50);
-tree.insert(60);
+tree.prettyPrint();
 
+tree.insert(400);
+tree.insert(500);
+tree.insert(600);
+console.log("Initial tree:");
+tree.prettyPrint();
+
+console.log("\nDeleting node with value 400:");
+tree.deleteItem(400);
+tree.prettyPrint();
+
+console.log("\nDeleting node with value 500:");
+tree.deleteItem(500);
+tree.prettyPrint();
+
+console.log("\nDeleting node with value 600:");
+tree.deleteItem(600);
+tree.prettyPrint();
 
