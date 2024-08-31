@@ -81,9 +81,14 @@ class Tree{
       }
       return current.data //return the smallest value
     }
-
+//returns the given node’s height. 
     height(node){
-      
+      //check if node is null - return -1 for the height
+
+      //recursively calculate the left subtree height
+      // then the right subtree
+
+      //use math.max to calculate the hight, and add +1 to the height to calculate the node
     }
 
     prettyPrint(node = this.root, prefix = "", isLeft = true) {
