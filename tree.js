@@ -85,9 +85,13 @@ class Tree{
     find(value , node = this.root){
       //if node is null and node value is equal to value return node
 
-      //only if the value is less than the current node value
+      //only if the value is less than the current node value search in left, else search in right
       //search in left node recursively
       //search in  right node  recursively
+    }
+
+    levelOrder(callback , node = this.root){
+      if(!callback) throw new Error ("Callback function required");
     }
 //returns the given node’s height. 
     height(node){
