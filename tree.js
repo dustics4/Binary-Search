@@ -92,6 +92,16 @@ class Tree{
 
     levelOrder(callback , node = this.root){
       if(!callback) throw new Error ("Callback function required");
+
+      let queue = [node];
+
+      //traverse
+      // use shift
+
+      //recursion to the currentNode
+
+      //in while loop and left and right children to queue if they exist
+
     }
 //returns the given node’s height. 
     height(node){
@@ -146,3 +156,6 @@ tree.prettyPrint();
 
 console.log("\nHeight of the tree:");
 console.log(tree.height(tree.root));
+
+console.log("\nLevel order traversal of the tree:");
+tree.levelOrder((node) => console.log(node.data)); // Pass a callback that logs the data of each node
