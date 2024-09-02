@@ -85,16 +85,18 @@ class Tree{
     find(value , node = this.root){
       //If node is null return node 
       //And node value is equal to value return node
-      if(node === null  ) return null;
+      if(node === null) return null;
+
       if(node.data === value) return node;
-      
       //only if the value is less than the current node value search in left, else search in right
       //search in left node recursively
       //search in  right node  recursively
       if(value < node.data){
-        return this.find(node.left);
-      }else{
-        return this.find(node.right);
+        return this.find(value, node.left);
+      }
+      else
+      {
+        return this.find(value, node.right);
       }
     }
 
@@ -167,11 +169,7 @@ console.log(tree.height(tree.root));
 
 console.log("Test Case 1: Search for an existing value (e.g., 30)");
 const foundNode1 = tree.find(29);
-console.log(foundNode1 ? `Found: ${foundNode1.data}` : "Not Found");
-
-console.log("\nTest Case 2: Search for a non-existing value (e.g., 99)");
-const foundNode2 = tree.find(99);
-console.log(foundNode2 ? `Found: ${foundNode2.data}` : "Not Found");
+console.log(foundNode1 ? `Found: ${foundNode1.data}` : "Not Found"); //Not Found
 
 console.log("\nLevel order traversal of the tree:");
 tree.levelOrder((node) => console.log(node.data)); // Pass a callback that logs the data of each node
