@@ -105,12 +105,25 @@ class Tree{
 
       let queue = [node];
 
-      //traverse
-      // use shift
+      while(queue.length > 0){
+        let currentNode = queue.shift();
+
+        callback(currentNode);
+
+        if(currentNode.left !== null) {
+          queue.push(currentNode.left);
+        }
+
+        if(currentNode.right !== null){
+          queue.push(currentNode.right);
+        }
+      }
+      //traverse use while loop
+      // use shift in variable
 
       //recursion to the currentNode
 
-      //in while loop and left and right children to queue if they exist
+      //in while loop and left and right children to queue if they exist. you can use push
 
     }
 //returns the given node’s height. 
