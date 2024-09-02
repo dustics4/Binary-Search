@@ -83,19 +83,19 @@ class Tree{
     }
 //function to find node in the tree
     find(value , node = this.root){
-      //if node is null and node value is equal to value return node
-
-      if(node === null & node.data === value) return node;
-
-      if(value < node.data){
-        return this.find(node.left);
-      }else if( value > node.data){
-        return this.find(node.right);
-      }
-
+      //If node is null return node 
+      //And node value is equal to value return node
+      if(node === null  ) return null;
+      if(node.data === value) return node;
+      
       //only if the value is less than the current node value search in left, else search in right
       //search in left node recursively
       //search in  right node  recursively
+      if(value < node.data){
+        return this.find(node.left);
+      }else{
+        return this.find(node.right);
+      }
     }
 
     levelOrder(callback , node = this.root){
