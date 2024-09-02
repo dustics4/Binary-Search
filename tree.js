@@ -101,23 +101,23 @@ class Tree{
     }
 
     levelOrder(callback , node = this.root){
-      if(!callback) throw new Error ("Callback function required");
+      if(!callback) throw new Error ("Callback function required"); // To ensure a callback is provided
 
-      let queue = [node];
-
+      let queue = [node]; // Initialize the queue with root node
+      //traverse the queue
       while(queue.length > 0){
-        let currentNode = queue.shift();
+        let currentNode = queue.shift(); //dequeue the front node
 
-        callback(currentNode);
+        callback(currentNode); //Process the current node with the provided callback
 
-        if(currentNode.left !== null) {
-          queue.push(currentNode.left);
+        if(currentNode.left !== null){ //enqueue left child
+          queue.push(currentNode.left)
         }
-
-        if(currentNode.right !== null){
+        if(currentNode.right !== null){ //enqueue right child
           queue.push(currentNode.right);
         }
       }
+      
       //traverse use while loop
       // use shift in variable
 
