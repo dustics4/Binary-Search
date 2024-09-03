@@ -24,8 +24,8 @@ class Tree{
             let mid = Math.floor(arr.length / 2);
             let node = new Node(arr[mid]);
 
-            node.left = build(array.splice(0, mid));
-            node.right = build(array.splice(mid +1))
+            node.left = build(arr.slice(0, mid));
+            node.right = build(arr.slice(mid +1))
 
             return node
         }
@@ -119,10 +119,14 @@ class Tree{
       }
     }
 
-    inOrder(callback){
+    inOrder(callback, node = this.root){
       if(!callback) throw new Error ('Callback function required'); // To ensure a callback is provided
+      if(node === null) return;
 
-      let node = this.root;
+      this.inOrder(callback , node.left);
+      callback(node);
+      this.inOrder(callback, node.right);
+
     }
 //returns the given node’s height. 
     height(node){
@@ -154,8 +158,10 @@ function randomArray(size , max = 100){
     return Array.from({length: size}, () => Math.floor(Math.random() * max));
 }
 const randomNumbers = randomArray(15);  
+const randomNumbersTest = [22, 15, 34, 7, 18, 45, 3, 26, 39, 50, 11, 55, 17, 2, 9];
 
-const tree = new Tree(randomNumbers);
+
+const tree = new Tree(randomNumbersTest);
 tree.prettyPrint()
 tree.insert(30);
 tree.insert(40);
@@ -167,14 +173,6 @@ console.log("\nDeleting node with value 30:");
 tree.deleteItem(30);
 tree.prettyPrint();
 
-console.log("\nDeleting node with value 40:");
-tree.deleteItem(40);
-tree.prettyPrint();
-
-console.log("\nDeleting node with value 50:");
-tree.deleteItem(50);
-tree.prettyPrint();
-
 console.log("\nHeight of the tree:");
 console.log(tree.height(tree.root));
 
@@ -184,3 +182,6 @@ console.log(foundNode1 ? `Found: ${foundNode1.data}` : "Not Found"); //Not Found
 
 console.log("\nLevel order traversal of the tree:");
 tree.levelOrder((node) => console.log(node.data)); // Pass a callback that logs the data of each node
+
+console.log("\nIn-Order Traversal of the tree:");
+tree.inOrder((node) => console.log(node.data)); // Pass a callback that logs the data of each node
