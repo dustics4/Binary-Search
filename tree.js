@@ -1,6 +1,6 @@
 import Node from "./node.js";
 
-class Tree{
+export default class Tree{
     constructor(array){
         this.root = this.buildTree(array); 
     }
@@ -118,15 +118,14 @@ class Tree{
         }
       }
     }
-
+//outputs in ascending order, starting from left subtree, then to the right
     inOrder(callback, node = this.root){
       if(!callback) throw new Error ('Callback function required'); // To ensure a callback is provided
-      if(node === null) return;
+      if(node === null) return; //if null we pop off the callstack
 
-      this.inOrder(callback , node.left);
-      callback(node);
-      this.inOrder(callback, node.right);
-
+      this.inOrder(callback , node.left); //we move onto the left subtree
+      callback(node); //appends node to the end of the list . e.g the last node in tree before hiting null
+      this.inOrder(callback, node.right); // we move onto the right subtree
     }
 //returns the given node’s height. 
     height(node){
@@ -152,36 +151,3 @@ class Tree{
       }
     }
 }
-
-
-function randomArray(size , max = 100){
-    return Array.from({length: size}, () => Math.floor(Math.random() * max));
-}
-const randomNumbers = randomArray(15);  
-const randomNumbersTest = [22, 15, 34, 7, 18, 45, 3, 26, 39, 50, 11, 55, 17, 2, 9];
-
-
-const tree = new Tree(randomNumbersTest);
-tree.prettyPrint()
-tree.insert(30);
-tree.insert(40);
-tree.insert(50);
-console.log("Initial tree:");
-tree.prettyPrint();
-
-console.log("\nDeleting node with value 30:");
-tree.deleteItem(30);
-tree.prettyPrint();
-
-console.log("\nHeight of the tree:");
-console.log(tree.height(tree.root));
-
-console.log("Test Case 1: Search for an existing value (e.g., 30)");
-const foundNode1 = tree.find(29);
-console.log(foundNode1 ? `Found: ${foundNode1.data}` : "Not Found"); //Not Found
-
-console.log("\nLevel order traversal of the tree:");
-tree.levelOrder((node) => console.log(node.data)); // Pass a callback that logs the data of each node
-
-console.log("\nIn-Order Traversal of the tree:");
-tree.inOrder((node) => console.log(node.data)); // Pass a callback that logs the data of each node
