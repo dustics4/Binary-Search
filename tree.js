@@ -157,6 +157,21 @@ export default class Tree{
       return Math.max(leftHeight, rigthHeight) + 1;
       //use math.max to calculate the hight, and add +1 to the height to calculate the node
     }
+//depth is the amount of links from a given node to the root node
+    depth(value , node = this.root){
+      //base case
+
+      //if node is null return -1
+      //if node.data matches the value return 0 as that is the root node
+      //create variable depthInSubtree
+      //if value is less than node data
+      //traverse left tree , depth var = recursive traversial
+      //else traverse right tree
+
+      //if value is not found in subtree return -1
+
+      //if it is found add 1 to the depth of the account and return
+    }
 
     prettyPrint(node = this.root, prefix = "", isLeft = true) {
       if(node === null) return;
