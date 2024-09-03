@@ -127,6 +127,15 @@ export default class Tree{
       callback(node); //appends node to the end of the list . e.g the last node in tree before hiting null
       this.inOrder(callback, node.right); // we move onto the right subtree
     }
+
+    postOrder(callback , node = this.root){
+      if(!callback) throw new Error ('Callback function required'); // To ensure a callback is provided
+      if(node === null) return;
+
+      this.postOrder(callback , node.left);
+      this.postOrder(callback, node.right)
+      callback(node);
+    }
 //returns the given node’s height. 
     height(node){
       //check if node is null - return -1 for the height

@@ -29,3 +29,6 @@ tree.levelOrder((node) => console.log(node.data)); // Pass a callback that logs 
 
 console.log("\nIn-Order Traversal of the tree:");
 tree.inOrder((node) => console.log(node.data)); // Pass a callback that logs the data of each node
+
+console.log("\nPost-Order Traversal of the tree");
+tree.postOrder((node) => console.log(node.data))
