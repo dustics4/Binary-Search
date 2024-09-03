@@ -118,6 +118,12 @@ class Tree{
         }
       }
     }
+
+    inOrder(callback){
+      if(!callback) throw new Error ('Callback function required'); // To ensure a callback is provided
+
+      let node = this.root;
+    }
 //returns the given node’s height. 
     height(node){
       //check if node is null - return -1 for the height
