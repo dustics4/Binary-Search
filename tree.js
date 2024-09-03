@@ -136,6 +136,15 @@ export default class Tree{
       this.postOrder(callback, node.right)
       callback(node);
     }
+
+    preOrder(callback, node = this.root){
+      if(!callback) throw new Error ('Callback function required'); // To ensure a callback is provided
+      if(node === null) return;
+
+      callback(node);
+      this.preOrder(callback, node.left);
+      this.preOrder(callback, node.right);
+    }
 //returns the given node’s height. 
     height(node){
       //check if node is null - return -1 for the height
