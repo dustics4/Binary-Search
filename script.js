@@ -7,9 +7,7 @@ const randomNumbers = randomArray(15);
 
 const tree = new Tree(randomNumbers);
 tree.prettyPrint()
-tree.insert(30);
-tree.insert(40);
-tree.insert(50);
+
 console.log("Initial tree:");
 tree.prettyPrint();
 
@@ -35,3 +33,9 @@ tree.postOrder((node) => console.log(node.data))
 
 console.log("\nPre-Order Traversal of the tree");
 tree.preOrder((node) => console.log(node.data));
+
+console.log("\nDepth of the Tree:");
+const nodeToFind = tree.find(7); // Find the node with value 4
+console.log(nodeToFind ? `Found node with data: ${nodeToFind.data}` : "Node not found");
+const depthOfNode = tree.depth(nodeToFind);
+console.log(depthOfNode);  
