@@ -158,19 +158,26 @@ export default class Tree{
       //use math.max to calculate the hight, and add +1 to the height to calculate the node
     }
 //depth is the amount of links from a given node to the root node
-    depth(value , node = this.root){
-      //base case
+    depth(node){
+      if(node === null) return -1; // This would be due to value not being found
+      
+      let depthCount = 0; //initialize counter
+      let current = this.root; // start from root note
 
-      //if node is null return -1
-      //if node.data matches the value return 0 as that is the root node
-      //create variable depthInSubtree
-      //if value is less than node data
-      //traverse left tree , depth var = recursive traversial
-      //else traverse right tree
+      //traverse the tree until the target node is found
+      while(current !== null){
+        console.log(`Checking node with data: ${current.data}, depthCount: ${depthCount}`);
+        if(node.data === current.data){
+          return depthCount; //node found return depth
+        } else if(node.data < current.data){
+          current = current.left; // move to left child
+        }else{
+          current = current.right; // move to right
+        }
+        depthCount++;
+      }
 
-      //if value is not found in subtree return -1
-
-      //if it is found add 1 to the depth of the account and return
+      return -1 //if node is not found
     }
 
     prettyPrint(node = this.root, prefix = "", isLeft = true) {
