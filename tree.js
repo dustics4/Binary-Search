@@ -182,16 +182,24 @@ export default class Tree{
 
     isBalanced(node = this.root){
       //base case, if node is null return   true;
+      if(node === null) return true;
+
+      let leftHeight = this.height(node.left);
+      let rightHeight = this.height(node.right);
       //create variables to caclulate height of left and right subtree. Recurisvely
 
-      //Use math.abs, if height difference is greater than 1 tree is not balanced
+      Math.abs(leftHeight - rightHeight) + 1;
+      //Use math.abs, IF height difference is greater than 1 tree is not balanced / return false
       //recursively check both subtrees for balance, return node.left && right
     }
 
     rebalance(){
       //array to store all nodes in sorted order
+      let nodes = [];
       //use in order traversal to get sorted values node => nodes.push(data of node)
+      this.inOrder((node) => nodes.push(node.data));
 
+      this.root = this.buildTree(nodes);
       //rebuild the tree using sorted array root = buildtree nodes
     }
 
