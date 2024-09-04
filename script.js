@@ -32,3 +32,6 @@ tree.inOrder((node) => console.log(node.data)); // Pass a callback that logs the
 
 console.log("\nPost-Order Traversal of the tree");
 tree.postOrder((node) => console.log(node.data))
+
+console.log("\nPre-Order Traversal of the tree");
+tree.preOrder((node) => console.log(node.data));
