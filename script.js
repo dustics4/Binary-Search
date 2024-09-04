@@ -6,10 +6,17 @@ function randomArray(size , max = 100){
 const randomNumbers = randomArray(15);  
 
 const tree = new Tree(randomNumbers);
-tree.prettyPrint()
+
+
 
 console.log("Initial tree:");
 tree.prettyPrint();
+
+console.log('Is Balanced:', tree.isBalanced());
+
+// Rebalance the tree
+console.log('Rebalancing Tree');
+tree.rebalance();
 
 console.log("\nDeleting node with value 30:");
 tree.deleteItem(30);
