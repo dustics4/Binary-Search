@@ -180,6 +180,21 @@ export default class Tree{
       return -1 //if node is not found
     }
 
+    isBalanced(node = this.root){
+      //base case, if node is null return   true;
+      //create variables to caclulate height of left and right subtree. Recurisvely
+
+      //Use math.abs, if height difference is greater than 1 tree is not balanced
+      //recursively check both subtrees for balance, return node.left && right
+    }
+
+    rebalance(){
+      //array to store all nodes in sorted order
+      //use in order traversal to get sorted values node => nodes.push(data of node)
+
+      //rebuild the tree using sorted array root = buildtree nodes
+    }
+
     prettyPrint(node = this.root, prefix = "", isLeft = true) {
       if(node === null) return;
       if (node.right !== null) {
