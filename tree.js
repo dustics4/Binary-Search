@@ -188,9 +188,10 @@ export default class Tree{
       let rightHeight = this.height(node.right);
       //create variables to caclulate height of left and right subtree. Recurisvely
 
-      Math.abs(leftHeight - rightHeight) + 1;
+      if(Math.abs(leftHeight - rightHeight) > 1) return false;
       //Use math.abs, IF height difference is greater than 1 tree is not balanced / return false
       //recursively check both subtrees for balance, return node.left && right
+      return this.isBalanced(node.left) && this.isBalanced(node.right);
     }
 
     rebalance(){
