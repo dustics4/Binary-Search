@@ -7,32 +7,27 @@ export default class Tree{
     }
 
     buildTree(array){        
-        if(array.length === 0) return null;
-        
-        let mid = Math.floor(array.length / 2); // calculates the mid of the array
-        let node = new Node(array[mid]); // Create a new node with middle element
+      if(array.length === 0) return null;
+      
+      let mid = Math.floor(array.length / 2); // calculates the mid of the array
+      let node = new Node(array[mid]); // Create a new node with middle element
 
-        node.left = this.buildTree(array.slice(0, mid)); //recursively build the left subtree using left half of the array
-        node.right = this.buildTree(array.slice(mid +1)) // recursively build the right subtree using right half of the array
+      node.left = this.buildTree(array.slice(0, mid)); //recursively build the left subtree using left half of the array
+      node.right = this.buildTree(array.slice(mid +1)) // recursively build the right subtree using right half of the array
 
-        return node
+      return node
     }
+
 //will insert a value in to the tree
     insert(value, node = this.root){
-      //check current value with node value
-      // if value is less than node value , move to the left subtree
-      //else move the value to the right tree.
-
-      //add value to insert into the node
-      //if the root is empty, return the value added first.
-      if(node === null) return new Node(value);
+      if(node === null) return new Node(value);  // If the current node is null, create a new node.
 
       if(value < node.data){
-        node.left = this.insert(value, node.left);
+        node.left = this.insert(value, node.left); // If the value is less than the current node's data, insert it in the left subtree.
       }else if(value > node.data){
-        node.right = this.insert(value, node.right);
+        node.right = this.insert(value, node.right); // If the value is greater than the current node's data, insert it in the right subtree.
       }
-      return node;
+      return node; // Return the node to maintain tree links.
     }
 
     deleteItem(value , node = this.root){
@@ -43,44 +38,38 @@ export default class Tree{
       }else if ( value > node.data){
         node.right = this.deleteItem(value , node.right);
       }else{
-      //if the node to delete is found
-          if(node.left === null) return node.right;
-          if(node.right === null) return node.left;
+          //if the node to delete is found
+          if(node.left === null) return node.right;    // Node with only right child or no child.
+          if(node.right === null) return node.left; // Node with only left child.
       
-      //we find the smallest value in the right subtree
-          node.data = this.minValue(node.right);
-
-      //we delete the smallest value as it has been copied
-          node.right = this.deleteItem(node.data, node.right);
+          node.data = this.minValue(node.right); //we find the smallest value in the right subtree
+          node.right = this.deleteItem(node.data, node.right);  //we delete the smallest value as it has been copied
       }
       //return the node to maintain the tree's links
       return node;
     }
-//successor finction, find's the smallest value in tree
-    minValue(node){
-      let current = node;
 
+//successor function, find's the smallest value in tree
+    minValue(node){
+      let current = node; //start at given node
       while(current.left !== null){
         current = current.left //traverse until the left most child
       }
       return current.data //return the smallest value
     }
+
 //function to find node in the tree
     find(value , node = this.root){
-      //If node is null return node 
-      //And node value is equal to value return node
-      if(node === null) return null;
-
-      if(node.data === value) return node;
+      if(node === null) return null; //If node is null return null 
+      if(node.data === value) return node; //And node value is equal to value return node
+      
+     
       //only if the value is less than the current node value search in left, else search in right
-      //search in left node recursively
-      //search in  right node  recursively
       if(value < node.data){
-        return this.find(value, node.left);
+        return this.find(value, node.left);  //search in left node recursively
       }
-      else
-      {
-        return this.find(value, node.right);
+      else{
+        return this.find(value, node.right); //search in  right node  recursively
       }
     }
 
