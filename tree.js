@@ -2,36 +2,20 @@ import Node from "./node.js";
 
 export default class Tree{
     constructor(array){
-        this.root = this.buildTree(array); 
+        const sortedArray = [...new Set((array).sort((a,b) => a - b))]; //removes duplicates and sorts
+        this.root = this.buildTree(sortedArray); // Builds a balanced tree from the sorted array
     }
 
-    buildTree(array){
-        //create a sorted array ( use .. Set)
-        const sortedArray = [...new Set((array).sort((a,b) => a - b))] //removes duplicates and sorts
-        //create function build/ takes in arr
-        //base case - length of array === 0 return null
-        //calculate the mid
-        //let node = new Node(array[mid])
+    buildTree(array){        
+        if(array.length === 0) return null;
+        
+        let mid = Math.floor(array.length / 2); // calculates the mid of the array
+        let node = new Node(array[mid]); // Create a new node with middle element
 
-        //node.left = // recursive function
-        //node.right = // recursive function
+        node.left = this.buildTree(array.slice(0, mid)); //recursively build the left subtree using left half of the array
+        node.right = this.buildTree(array.slice(mid +1)) // recursively build the right subtree using right half of the array
 
-        //return the node
-
-        const build = (arr) => {
-            if(arr.length === 0) return null;
-
-            let mid = Math.floor(arr.length / 2);
-            let node = new Node(arr[mid]);
-
-            node.left = build(arr.slice(0, mid));
-            node.right = build(arr.slice(mid +1))
-
-            return node
-        }
-
-        return build(sortedArray);
-        //return build (sortedarray);
+        return node
     }
 //will insert a value in to the tree
     insert(value, node = this.root){
